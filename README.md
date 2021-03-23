@@ -281,4 +281,74 @@ mv 移动/改名
 
 /	路径间隔符
 
-~	当前用户的家目录	管理员家目录为/root，其它用户的家目录在/home/用户名	
+~	当前用户的家目录	管理员家目录为/root，其它用户的家目录在/home/
+
+时间方面：
+%n : 下一行
+%t : 跳格 tab
+%H : 小时(00..23)
+%I : 小时(01..12)
+%k : 小时(0..23)
+%l : 小时(1..12)
+%M : 分钟(00..59)
+%p : 显示本地 AM 或 PM
+%r : 直接显示时间 (12 小时制，格式为 hh:mm:ss [AP]M)
+%s : 从 1970 年 1 月 1 日 00:00:00 UTC 到目前为止的秒数
+%S : 秒(00..60)
+%T : 直接显示时间 (24 小时制)
+%X : 相当于 %H:%M:%S
+%Z : 显示时区
+
+
+日期方面：
+%a : 星期几 (Sun..Sat)
+%A : 星期几 (Sunday..Saturday)
+%b : 月份 (Jan..Dec)
+%B : 月份 (January..December)
+%c : 直接显示日期与时间
+%d : 日 (01..31)
+%D : 直接显示日期 (mm/dd/yy)
+%h : 同 %b
+%j : 一年中的第几天 (001..366)
+%m : 月份 (01..12)
+%U : 一年中的第几周 (00..53) (以 Sunday 为一周的第一天的情形)
+%w : 一周中的第几天 (0..6)
+%W : 一年中的第几周 (00..53) (以 Monday 为一周的第一天的情形)
+%x : 直接显示日期 (yyyy-mm-dd)
+%y : 年份的最后两位数字 (00.99)
+%Y : 完整年份 (0000..9999)
+
+
+
+[root@zutuanxue ~]# date '+%I%M%S'
+025929
+[root@zutuanxue ~]# date '+%r'
+上午 02时59分49秒
+[root@zutuanxue ~]# date '+%s'
+1584428402
+[root@zutuanxue ~]# date '+%Z'
+EDT
+[root@zutuanxue ~]# date '+%a'
+二
+[root@zutuanxue ~]# date '+%A'
+星期二
+[root@zutuanxue ~]# date '+%b'
+3月
+[root@zutuanxue ~]# date '+%B'
+三月
+[root@zutuanxue ~]# date '+%c'
+2020年03月17日 星期二 03时01分36秒
+[root@zutuanxue ~]# date '+%T%n%D'
+03:03:35
+03/17/20
+[root@zutuanxue ~]# date '+%T%t%D'
+03:03:58	03/17/20
+[root@zutuanxue ~]# date -s 2021-10-25
+2021年 10月 25日 星期一 00:00:00 EDT
+[root@zutuanxue ~]# date -s 18:00
+2021年 10月 25日 星期一 18:00:00 EDT
+[root@zutuanxue ~]# date -s 18:30:21
+2021年 10月 25日 星期一 18:30:21 EDT
+[root@zutuanxue ~]# date -s "2021-04-28 15:30:20"
+2021年 04月 28日 星期三 15:30:20 EDT
+
