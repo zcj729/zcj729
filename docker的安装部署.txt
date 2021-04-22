@@ -1,0 +1,13 @@
+1，查看centos ： uname -r
+更新yum ：  yum update
+卸载旧版本 ： yum remove docker docker-common docker-selinux docker-engine
+安装需要的软件包 ：yum install -y yum-utils device-mapper-persistent-data lvm2
+设置yum源 ：yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+查看所有仓库中所有的docker版本: yum list docker-ce --showduplicates | sort -r
+选择特定版本安装 ：yum install docker-ce-18.03.1.ce -y
+启动并加入开机启动 ：systemctl start docker
+		  systemctl enable docker
+查看是否安装成功：docker version （若有Client和Server，则成功）
+测试运行hello world
+	将image文件从仓库抓取到本地：docker image pull hello-world
+运行文件image文件，生成一个正在运行的容器实例：docker container run hello-world
