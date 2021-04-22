@@ -1,0 +1,86 @@
+格式1：if 条件 ; then 语句; fi
+格式2：if 条件; then 语句; else 语句; fi
+格式3：if …; then … ;elif …; then …; else …; fi
+
+逻辑判断表达式：
+if [ $a -gt $b ]; if [ $a -lt 5 ]; if [ $b -eq 10 ]等 -gt (>); -lt(<); -ge(>=); -le(<=);-eq(==); -ne(!=) 注意到处都是空格
+可以使用 && || 结合多个条件
+if [ -z $a ]  这个表示当变量a的值为空时会怎么样
+if grep -q '123' 1.txt; then  表示如果1.txt中含有'123'的行时会怎么样
+if [ ! -e file ]; then 表示文件不存在时会怎么样
+if (($a<1)); then …等同于 if [ $a -lt 1 ]; then… [ ] 中不能使用<,>,==,!=,>=,<=这样的符号
+
+[ -f file ]判断是否是普通文件，且存在 	[ -d file ] 判断是否是目录，且存在
+[ -e file ] 判断文件或目录是否存在
+[ -r file ] 判断文件是否可读	[ -w file ] 判断文件是否可写	[ -x file ] 判断文件是否可执行
+
+一，for 变量名 in 条件 ; do   
+	command
+       done    
+二、while 条件； do
+	command
+       done     
+
+date  +%Y-%m-%d, date +%y-%m-%d 年月日
+date  +%H:%M:%S = date +%T 时间
+date +%s  时间戳
+date -d "+1day"一天后
+date -d "-1day"一天前
+date -d  "-1month" 一月前
+date -d  “-1min” 一分钟前
+date +%w, date +%W 星期
+
+1.编写shell脚本，计算1-100的和；
+#! /bin/bash
+sum=0
+for i in `seq 1 100`;do
+   sum=$[$i+$sum]
+done
+echo $sum
+
+2.编写shell脚本，要求输入一个数字，然后计算出从1到输入数字的和，要求，如果输入的数字小于1，则重新输入，直到输入正确的数字为止；
+#! /bin/bash
+i=0
+while [ $i -lt "1" ]; do
+ read -p "Please enter a number greater than one:" i
+done
+
+sum=0
+for i in `seq 1 $i`;do
+        sum=$[$i+$sum]
+done
+echo $sum
+
+3.编写shell脚本，把/root/目录下的所有目录（只需要一级）拷贝到/tmp/目录下；
+#! /bin/bash
+cd /root
+for dir in `ls`; do
+if [ -d $f ]; then
+  cp -r $dir /tmp/
+fi
+done
+
+4.编写shell脚本，批量建立用户user_00, user_01, ... user_100并且所有用户同属于users组；
+#! /bin/bash
+groupadd users
+for i in `seq -w 0 99`; do
+useradd -g users user_0$i
+done
+
+#! /bin/bash
+for i in `seq -w 0 99`; do
+userdel user_0$i
+done
+
+5.编写shell脚本，截取文件test.log中包含关键词 ‘abc’ 的行中的第一列（假设分隔符为 ”:” ），然后把截取的数字排序（假设第一列为数字），然后打印出重复次数超过10次的列；
+#! /bin/bash
+awk -F ':' '$1~/abc/ {print $1}' test.log >/tmp/5.txt
+sort -n 5.txt |uniq -c|sort -n  >/tmp/6.txt
+awk '$1>10 {print $2}' /tmp/6.txt
+
+6.编写shell脚本，判断输入的IP是否正确（IP的规则是，n1.n2.n3.n4，其中1<n1<255, 0<n2<255, 0<n3<255, 0<n4<255）
+
+
+
+
+
